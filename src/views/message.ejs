@@ -1,0 +1,130 @@
+<%- include('./htmlHeader') %>
+
+<nav class="navbar navbar-expand-lg bg-custom navbar-dark bg-dark ">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="/shared/img/logo300.png" width="54" alt=""> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+ Menu <span class="navbar-toggler-icon"></span>
+</button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto d-none">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/signUp">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logIn">Login</a>
+                </li>
+            </ul>
+
+
+
+
+            <ul class="navbar-nav ml-auto ">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/message/messages">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logOut">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /navbar -->
+
+<div class="container text-center py-5 my-5 text-center">
+    <div class="card pt-5">
+        <div class="circular-image">
+            <img src="http://localhost:5000/uploads/<%= user?.image %>" class="avatar " alt="">
+    </div>
+        <h3 class="py-2"><%= user?.name %></h3>
+        <button data-toggle="modal" data-target="#share" class="btn btn-default-outline share "><i class="fas fa-share-alt"></i>  Share Profile</button>
+    </div>
+</div>
+<!-- profile photo Modal -->
+<div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+                    <form action="" method="post">
+                        <label for="" class="text-muted">The file size of the photo should not exceed 7 MB</label>
+                        <input class="form-control" type="file" name="photo" id="">
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info">Upload</button>
+                <button type="button" class="btn btn-outline-danger">Remove Photo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  Share profile Modal -->
+<div class="modal fade" id="share" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Share Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+                <p><%= link %></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal -->
+
+
+
+<!-- =================messages=================== -->
+<div class="container text-center my-5 text-center">
+    <% if (!messages.length) { %>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card py-5">
+    
+                <p>You don't have any messages... </p>
+                </div>
+            </div>
+        </div>
+    <% } %>
+
+<% for( let i = 0; i < messages.length; i++ ) { %>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card py-5">
+            <p class=""><%= messages[i].content %> </p>
+        <div class="d-flex justify-content-center">
+            <a href="/message/<%= messages[i]._id %>"  class="btn btn-outline-danger ">Delete</a>
+        </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+    
+</div>
+
+
+<%- include('./htmlFooter') %>
