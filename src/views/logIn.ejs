@@ -45,6 +45,15 @@
                 </div>
             <% } %>
             <p><a class="text-muted forgot btn" href="/user/forgetPass">I Forgot My Password</a></p>
+            <% if (changePass) { %>
+                <div class="container mt-4">
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Success!</h4>
+                        <p>Your password has been changed successfully.</p>
+                    </div>
+                </div>
+        
+            <% } %>
             <p class="text-center mt-2"> don't have account ? <a style=" text-decoration: none"  href="/auth/signUp">signUp</a></p>
         </form>
     </div>

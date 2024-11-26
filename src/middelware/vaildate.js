@@ -19,9 +19,13 @@ const vaildateSchema=(Schema,url)=>{
             for (const element of error.details) {
                 vaildationErorr.push(element.path[0])
             }
-            console.log(vaildationErorr)
+            const user=await User.findById(req.params.id)
+            // console.log(user)
+
+            // console.log(vaildationErorr)
             req.flash('vaildationErorr',vaildationErorr)
             req.flash('data',req.body)
+            req.flash('user',user)
             return res.redirect(url)
             
         }

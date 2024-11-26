@@ -48,7 +48,9 @@ export const loginDisblay=(req,res,next)=>{
         js:"../shared/js/main.js",
         error:req.flash("error")[0],
         vaildationErorr:req.flash("vaildationErorr")[0],
-        data:req.flash("data")[0]
+        data:req.flash("data")[0],
+        changePass:req.flash("changePass")[0],
+
     })
     req.session.destroy()
     return
